@@ -1,0 +1,31 @@
+---
+title: "AUCS"
+output: html_document
+---
+
+```{r library, include=FALSE}
+#load libraries
+library(tidyverse)
+library(tidymodels)
+```
+
+```{r prelim}
+#prelim
+prelim <- readRDS(here::here("models", "prelim_run.Rds"))
+show_best(prelim, metric = "roc_auc") %>%
+  knitr::kable()
+```
+
+```{r tune}
+#tune
+tune <- readRDS(here::here("models", "tune.Rds"))
+show_best(tune, metric = "roc_auc") %>%
+  knitr::kable()
+```
+
+```{r final}
+#final
+final_fit <- readRDS(here::here("models", "final.Rds"))
+collect_metrics(final_fit) %>%
+  knitr::kable()
+```
