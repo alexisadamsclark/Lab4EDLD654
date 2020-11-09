@@ -1,4 +1,4 @@
-#using Daniel's recommended oraganization structure
+#using Daniel's recommended organization structure
 
 source("common.R")
 
@@ -18,7 +18,6 @@ grid <- grid_max_entropy(hpar, size = 25)
 #ggplot(grid, aes(neighbors, dist_power)) + 
   #geom_point() + 
   #theme_light()
-
 #ggsave(here::here("plots", "grid.pdf"))
 
 tune <- tune_grid(model, preprocessor = knn_recipe, resamples = cv, grid = grid)

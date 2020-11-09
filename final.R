@@ -13,5 +13,4 @@ model_final <- finalize_model(model, param_tuned)
 recipe_final <- finalize_recipe(knn_recipe, param_tuned)
 
 final_fit <- last_fit(model_final, preprocessor = recipe_final, split = splt)
-
 saveRDS(final_fit, "models/final.Rds")

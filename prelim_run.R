@@ -1,4 +1,4 @@
-#using Daniel's recommended oraganization structure
+#using Daniel's recommended organization structure
 
 source("common.R")
 
