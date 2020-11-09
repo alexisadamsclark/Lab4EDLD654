@@ -368,123 +368,30 @@ summary {
 
 <pre class="r"><code>#prelim
 prelim &lt;- readRDS(here::here(&quot;models&quot;, &quot;prelim_run.Rds&quot;))
-show_best(prelim, metric = &quot;roc_auc&quot;) %&gt;%
-  knitr::kable()</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="left">.metric</th>
-<th align="left">.estimator</th>
-<th align="right">mean</th>
-<th align="right">n</th>
-<th align="right">std_err</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">roc_auc</td>
-<td align="left">hand_till</td>
-<td align="right">0.5099884</td>
-<td align="right">10</td>
-<td align="right">0.0170551</td>
-</tr>
-</tbody>
-</table>
+show_best(prelim, metric = &quot;roc_auc&quot;)</code></pre>
+<pre><code>## # A tibble: 1 x 5
+##   .metric .estimator  mean     n std_err
+##   &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;
+## 1 roc_auc hand_till  0.510    10  0.0171</code></pre>
 <pre class="r"><code>#tune
 tune &lt;- readRDS(here::here(&quot;models&quot;, &quot;tune.Rds&quot;))
-show_best(tune, metric = &quot;roc_auc&quot;) %&gt;%
-  knitr::kable()</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="right">neighbors</th>
-<th align="right">dist_power</th>
-<th align="left">.metric</th>
-<th align="left">.estimator</th>
-<th align="right">mean</th>
-<th align="right">n</th>
-<th align="right">std_err</th>
-<th align="left">.config</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">19</td>
-<td align="right">1.138643</td>
-<td align="left">roc_auc</td>
-<td align="left">hand_till</td>
-<td align="right">0.5298370</td>
-<td align="right">10</td>
-<td align="right">0.0130979</td>
-<td align="left">Model05</td>
-</tr>
-<tr class="even">
-<td align="right">19</td>
-<td align="right">1.481097</td>
-<td align="left">roc_auc</td>
-<td align="left">hand_till</td>
-<td align="right">0.5286435</td>
-<td align="right">10</td>
-<td align="right">0.0125334</td>
-<td align="left">Model14</td>
-</tr>
-<tr class="odd">
-<td align="right">20</td>
-<td align="right">1.726966</td>
-<td align="left">roc_auc</td>
-<td align="left">hand_till</td>
-<td align="right">0.5271573</td>
-<td align="right">10</td>
-<td align="right">0.0140350</td>
-<td align="left">Model21</td>
-</tr>
-<tr class="even">
-<td align="right">19</td>
-<td align="right">1.332191</td>
-<td align="left">roc_auc</td>
-<td align="left">hand_till</td>
-<td align="right">0.5268469</td>
-<td align="right">10</td>
-<td align="right">0.0134606</td>
-<td align="left">Model10</td>
-</tr>
-<tr class="odd">
-<td align="right">8</td>
-<td align="right">1.014590</td>
-<td align="left">roc_auc</td>
-<td align="left">hand_till</td>
-<td align="right">0.5265863</td>
-<td align="right">10</td>
-<td align="right">0.0136299</td>
-<td align="left">Model01</td>
-</tr>
-</tbody>
-</table>
+show_best(tune, metric = &quot;roc_auc&quot;)</code></pre>
+<pre><code>## # A tibble: 5 x 8
+##   neighbors dist_power .metric .estimator  mean     n std_err .config
+##       &lt;int&gt;      &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;  
+## 1        19       1.14 roc_auc hand_till  0.530    10  0.0131 Model05
+## 2        19       1.48 roc_auc hand_till  0.529    10  0.0125 Model14
+## 3        20       1.73 roc_auc hand_till  0.527    10  0.0140 Model21
+## 4        19       1.33 roc_auc hand_till  0.527    10  0.0135 Model10
+## 5         8       1.01 roc_auc hand_till  0.527    10  0.0136 Model01</code></pre>
 <pre class="r"><code>#final
 final_fit &lt;- readRDS(here::here(&quot;models&quot;, &quot;final.Rds&quot;))
-collect_metrics(final_fit) %&gt;%
-  knitr::kable()</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="left">.metric</th>
-<th align="left">.estimator</th>
-<th align="right">.estimate</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">accuracy</td>
-<td align="left">multiclass</td>
-<td align="right">0.2838983</td>
-</tr>
-<tr class="even">
-<td align="left">roc_auc</td>
-<td align="left">hand_till</td>
-<td align="right">0.5185147</td>
-</tr>
-</tbody>
-</table>
+collect_metrics(final_fit)</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy multiclass     0.284
+## 2 roc_auc  hand_till      0.519</code></pre>
 
 
 
