@@ -1,4 +1,4 @@
-#using Daniel's oraganization suggestion
+#using Daniel's recommended oraganization structure
 
 source("common.R")
 

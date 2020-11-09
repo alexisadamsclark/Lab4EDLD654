@@ -1,8 +1,19 @@
+#using daniel's recommended organization structure
+
 #load libraries
 library(tidyverse)
 library(tidymodels)
 library(kknn)
 library(doParallel)
+
+#parallel processing
+all_cores <- parallel::detectCores(logical = FALSE)
+
+library(doParallel)
+cl <- makePSOCKcluster(all_cores)
+registerDoParallel(cl)
+foreach::getDoParWorkers()
+clusterEvalQ(cl, {library(tidymodels)})
 
 #lab4 code
 full_train <- read_csv("data/train.csv") %>%
@@ -34,12 +45,3 @@ knn_recipe <-
   step_dummy(all_nominal(), -all_outcomes()) %>%
   step_nzv(all_predictors()) %>%
   step_normalize(all_predictors())
-
-#parallel processing
-all_cores <- parallel::detectCores(logical = FALSE)
-
-library(doParallel)
-cl <- makePSOCKcluster(all_cores)
-registerDoParallel(cl)
-foreach::getDoParWorkers()
-clusterEvalQ(cl, {library(tidymodels)})
